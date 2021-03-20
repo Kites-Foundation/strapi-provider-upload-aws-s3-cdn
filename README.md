@@ -1,5 +1,5 @@
 # strapi-provider-upload-aws-s3
-This project is a fork of the official strapi s3 upload API with additional code added for CDN support for hellomunnar.
+This project is a fork of the official strapi s3 upload API with additional code added for CDN and prerfix support.
 
 ## Configurations
 
@@ -23,7 +23,8 @@ module.exports = ({ env }) => ({
       params: {
         Bucket: env('AWS_BUCKET'),
       },
-      cdn: env('CDN_URL')
+      cdn: env('CDN_URL'),
+      prefix: env('S3_PREFIX')
     },
   },
   // ...
