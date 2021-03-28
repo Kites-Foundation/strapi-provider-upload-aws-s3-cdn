@@ -1,7 +1,8 @@
 {
-  "name": "@Kites-Foundation/strapi-provider-upload-aws-s3",
+  "name": "@kites-foundation/strapi-provider-upload-aws-s3",
   "version": "3.5.4",
-  "description": "AWS S3 provider for strapi upload",
+  "private": false,
+  "description": "Strapi  S3 upload provider modified to support cdn and prefix",
   "homepage": "https://strapi.io",
   "keywords": [
     "upload",
@@ -20,24 +21,12 @@
   "strapi": {
     "isProvider": true
   },
-  "author": {
-    "email": "hi@strapi.io",
-    "name": "Strapi team",
-    "url": "https://strapi.io"
-  },
-  "maintainers": [
-    {
-      "name": "Strapi team",
-      "email": "hi@strapi.io",
-      "url": "https://strapi.io"
-    }
-  ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/strapi/strapi.git"
+    "url": "git://github.com/Kites-Foundation/strapi-provider-upload-aws-s3-cdn.git"
   },
   "bugs": {
-    "url": "https://github.com/strapi/strapi/issues"
+    "url": "https://github.com/Kites-Foundation/strapi-provider-upload-aws-s3-cdn/issues"
   },
   "engines": {
     "node": ">=10.16.0 <=14.x.x",
@@ -46,6 +35,5 @@
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "test": "echo \"no tests yet\""
-  },
-  "gitHead": "231263a3535658bab1e9492c6aaaed8692d62a53"
+  }
 }
