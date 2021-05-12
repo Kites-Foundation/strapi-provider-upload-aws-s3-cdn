@@ -16,7 +16,7 @@
   "main": "./lib",
   "dependencies": {
     "aws-sdk": "2.857.0",
-    "lodash": "4.17.20"
+    "lodash": "4.17.21"
   },
   "strapi": {
     "isProvider": true
