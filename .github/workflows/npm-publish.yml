@@ -36,14 +36,3 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create GitHub release
-        uses: actions/create-release@v2
-        with:
-          tag_name: $(node -p "require('./package.json').version")
-          release_name: $(node -p "require('./package.json').version")
-          body: |
-            Version $(node -p "require('./package.json').version") released.
-          draft: false
-          prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
