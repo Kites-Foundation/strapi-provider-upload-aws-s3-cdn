@@ -17,6 +17,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Setup Git
+        run: |
+          npm version ${{ github.event.inputs.version-bump }}
+          git config --local user.email "gkr@tuta.io"
+          git config --local user.name "gkr-bot"
       - uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -25,8 +30,6 @@ jobs:
       - name: Bump version
         run: |
           npm version ${{ github.event.inputs.version-bump }}
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
           git tag -a $(node -p "require('./package.json').version") -m "Version $(node -p "require('./package.json').version")"
           git push origin HEAD --tags
         env:
