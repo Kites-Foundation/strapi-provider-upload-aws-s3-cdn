@@ -19,9 +19,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Setup Git
         run: |
-          npm version ${{ github.event.inputs.version-bump }}
-          git config --local user.email "gkr@tuta.io"
-          git config --local user.name "gkr-bot"
+          git config --global user.email "gkr@tuta.io"
+          git config --global user.name "gkr-bot"
       - uses: actions/setup-node@v3
         with:
           node-version: 16
