@@ -1,11 +1,17 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
-
 name: Node.js Package
-
 on:
-  release:
-    types: [created]
+  workflow_dispatch:
+    inputs:
+      version-bump:
+        description: 'Select the version bump type'
+        required: true
+        type: choice
+        default: 'patch'
+        options:
+          - patch
+          - minor
+          - major
+permissions: write-all
 jobs:
   publish-gpr:
     runs-on: ubuntu-latest
@@ -16,6 +22,26 @@ jobs:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
       - run: npm ci
+      - name: Bump version
+        run: |
+          npm version ${{ github.event.inputs.version-bump }}
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git tag -a $(node -p "require('./package.json').version") -m "Version $(node -p "require('./package.json').version")"
+          git push origin HEAD --tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create GitHub release
+        uses: actions/create-release@v1
+        with:
+          tag_name: $(node -p "require('./package.json').version")
+          release_name: $(node -p "require('./package.json').version")
+          body: |
+            Version $(node -p "require('./package.json').version") released.
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
