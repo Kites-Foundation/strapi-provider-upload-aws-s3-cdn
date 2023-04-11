@@ -37,7 +37,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create GitHub release
-        uses: actions/create-release@v1
+        uses: actions/create-release@v2
         with:
           tag_name: $(node -p "require('./package.json').version")
           release_name: $(node -p "require('./package.json').version")
