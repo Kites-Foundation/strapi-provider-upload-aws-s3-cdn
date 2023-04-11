@@ -1,6 +1,6 @@
 {
   "name": "@kites-foundation/strapi-provider-upload-aws-s3",
-  "version": "3.5.4",
+  "version": "3.6.0",
   "private": false,
   "description": "Strapi  S3 upload provider modified to support cdn and prefix",
   "homepage": "https://strapi.io",
